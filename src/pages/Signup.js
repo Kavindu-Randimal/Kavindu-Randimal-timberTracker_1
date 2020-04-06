@@ -23,7 +23,7 @@ export default class Signup extends Component<{}>{
       <Logo/>
       <Form type="Signup"/>
       <View style={styles.signupTextCont}>
-        <Text style={{color:'#ffff'}}> Allredy have an account sign in. </Text>
+        <Text style={{color:'#ffffff'}}> Allredy have an account sign in. </Text>
         <TouchableOpacity onPress = {this.goBack}><Text style={styles.signupButton}>Sign in</Text></TouchableOpacity>
     </View>
    </View>
