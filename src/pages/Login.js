@@ -24,7 +24,7 @@ export default class Login extends Component<{}>{
       <Form type="Login"/>
       <View style={styles.signupTextCont}>
         <Text style={{color:'#ffff'}}> Don't have an account yet?  </Text>
-        <TouchableOpacity onPress={this.signup}><Text style={styles.signupButton}>Sign up</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.Signup}><Text style={styles.signupButton}>Sign up</Text></TouchableOpacity>
       </View>
    </View>
   )
