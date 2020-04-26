@@ -11,8 +11,8 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import FlashMessage from "react-native-flash-message";
 
-// import Login from './src/pages/Login';
 import Routes from './src/Routes';
 import Login from './src/pages/Login';
 import Signup from './src/pages/Signup';
@@ -20,18 +20,17 @@ import Signup from './src/pages/Signup';
 export default class App extends Component<{}>{
  render(){
   return(
-   <View style={styles.container}>
-    
-    <Signup/>
-   </View>
-  );
+  <View style={styles.container}>
+    <Routes />
+    <FlashMessage position="top" />
+  </View>
+  )
  }
 }
  const styles= StyleSheet.create({
   container :  {
    backgroundColor:'black',
-   flex: 1,  
-   alignItems:'center',
+   flex: 1, 
    justifyContent:'center',
    },
 });

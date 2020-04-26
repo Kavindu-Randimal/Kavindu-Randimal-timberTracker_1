@@ -14,8 +14,11 @@ import {Actions} from 'react-native-router-flux';
 
 export default class Login extends Component<{}>{
  signup(){
+    console.log("Click on signup start navigation.");
     Actions.signup()
   }
+  
+
  render(){
   return(
    <View style={styles.container}>
@@ -24,11 +27,12 @@ export default class Login extends Component<{}>{
       <Form type="Login"/>
       <View style={styles.signupTextCont}>
         <Text style={{color:'#ffff'}}> Don't have an account yet?  </Text>
-        <TouchableOpacity onPress={this.Signup}><Text style={styles.signupButton}>Sign up</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.signup}><Text style={styles.signupButton}>Sign up</Text></TouchableOpacity>
       </View>
    </View>
   )
  }
+ 
 }
  const styles= StyleSheet.create({
   container :  {
