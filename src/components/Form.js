@@ -7,8 +7,14 @@ import {
   TouchableOpacity,
   Text,  
 } from 'react-native';
+import NetworkService from '../network/NetworkService';
 
 export default class Logo extends Component<{}>{
+  async login() {
+    console.log("Login Clicked");
+    let data = await NetworkService.getUser();
+    console.log(data);
+  }
  render(){
   return(
       <View style={styles.container}>
@@ -25,7 +31,8 @@ export default class Logo extends Component<{}>{
          ref={(input) => this.password = input}
          />
 
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button}
+          onPress={()=> this.login()}>
              <Text style={styles.buttonText}>{this.props.type}</Text>
           </TouchableOpacity> 
       </View>

@@ -1,8 +1,8 @@
-import RequestService from ".RequestService";
+import RequestService from "./RequestService";
 
 class NetworkService{
     getUser(){
-        var url = `/localhost:8080/users/users/1`
+        var url = `http://192.168.1.4:8080/users/users/3`
         return RequestService.getRequest(url)
     }
 
