@@ -16,6 +16,7 @@ import { showMessage, hideMessage } from "react-native-flash-message";
 import {Actions} from 'react-native-router-flux';
 
 export default class Signup extends Component<{}>{
+  isEmailValid=true;
 
   constructor(props){
     super(props);
@@ -37,17 +38,20 @@ export default class Signup extends Component<{}>{
 
   // email validation
 
-  validate = (text) => {
+  validate = (text)=> {
     console.log(text);
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (reg.test(text) === false) {
       console.log("Email is Not Correct");
       this.setState({ email: text })
+      this.isEmailValid = false;
       return false;
     }
     else {
       this.setState({ email: text })
       console.log("Email is Correct");
+      this.isEmailValid = true;
+      return true;
     }
   }
 
@@ -56,34 +60,42 @@ export default class Signup extends Component<{}>{
  }
 
  async SignUp(){
-  console.log(this.state);
-  let response = await fetch(`http://192.168.1.5:8080/users/signup`,{
-    method: 'POST',
-    headers:{
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body:JSON.stringify(this.state),
+  if(this.isEmailValid){
+    console.log(this.state);
+    let response = await fetch(`http://192.168.1.5:8080/users/signup`,{
+      method: 'POST',
+      headers:{
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify(this.state),
 
-  }).then(res=>{
-    console.log(res)
-    return res.json()
-  }).catch(err =>{
-    console.log('Error',err)
-  });
-
-  console.log(response);
-  if(response.loggin){
-    showMessage({
-      message: "Signup Success",
-      description: response.message,
-      type:  "success",
+    }).then(res=>{
+      console.log(res)
+      return res.json()
+    }).catch(err =>{
+      console.log('Error',err)
     });
-    Actions.loggin();
+
+    console.log(response);
+    if(response.loggin){
+      showMessage({
+        message: "Signup Success",
+        description: response.message,
+        type:  "success",
+      });
+      Actions.login();
+    }else{
+      showMessage({
+        message: "Singup Fails",
+        description: response.message,
+        type:  "danger",
+      });
+    }
   }else{
     showMessage({
       message: "Singup Fails",
-      description: response.message,
+      description: "Email is not correct",
       type:  "danger",
     });
   }
@@ -117,7 +129,7 @@ rewuestHandle() {
         onChange={value => this.handleInputChange('lastName', value)}
         onSubmitEditing={()=> this.password.focus()}
     />
-    <TextInput style={styles.inputBox}
+    <TextInput style={  this.isEmailValid ? styles.inputBox : styles.inputBoxError}
         name = "email"
         type = "text"
         onChangeText={(text) => this.validate(text)}
@@ -185,7 +197,20 @@ inputBox:{
     fontSize:16,
     color:'white',
     marginVertical:12,
-},
+    // borderColor:"red",
+    // borderWidth:1
+  },
+  inputBoxError:{
+    width:300,
+    backgroundColor:'rgba(255,255,255,0.3)',
+    borderRadius:25,
+    paddingHorizontal:20,
+    fontSize:16,
+    color:'white',
+    marginVertical:12,
+    borderColor:"red",
+    borderWidth:1
+  },
 
 button:{
   backgroundColor:'#008e76',
