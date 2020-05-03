@@ -104,7 +104,7 @@ export default class Logo extends Component<{}>{
 
  render(){
   return(
-    <View style={styles.container}>
+    <View style={styles.container } >
         <TextInput style={styles.inputBox}
          name = "name"
          type = "text"
@@ -138,6 +138,7 @@ export default class Logo extends Component<{}>{
    flexGrow: 1,
    alignItems:'center',
    justifyContent:'center',  
+   
    },
   inputBox:{
     width:350,
@@ -161,6 +162,7 @@ export default class Logo extends Component<{}>{
     textAlign:'center',
     color:'#ffff',
   }
+  
 
 });
 
