@@ -1,25 +1,23 @@
 package com.example.demo.model;
 
-import javax.persistence.GeneratedValue;
-
 public class LoginUser {
 
-    private String name;
+    private String email;
     private Boolean loggin;
     private String message;
 
-    public LoginUser(String name, boolean logging, String message ) {
-        this.name = name;
+    public LoginUser(String email, boolean logging, String message ) {
+        this.email = email;
         this.loggin = logging;
         this.message = message;
     }
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Boolean getLoggin() {
